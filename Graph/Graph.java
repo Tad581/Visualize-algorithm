@@ -12,7 +12,7 @@ public class Graph {
     public Graph() {
     }
 
-    public Graph autoGenerateGraph () {
+    public static Graph autoGenerateGraph () {
         Graph graph = new Graph();
         
         for (int i = 0; i < 5; i++) {
@@ -20,12 +20,12 @@ public class Graph {
             graph.vertices.add(tempVertex);
         }
 
-        graph.edges.add(new Edge(vertices.get(0), vertices.get(1)));
-        graph.edges.add(new Edge(vertices.get(0), vertices.get(2)));
-        graph.edges.add(new Edge(vertices.get(1), vertices.get(3)));
-        graph.edges.add(new Edge(vertices.get(2), vertices.get(4)));
-        graph.edges.add(new Edge(vertices.get(1), vertices.get(4)));
-        graph.edges.add(new Edge(vertices.get(3), vertices.get(4)));
+        graph.edges.add(new Edge(graph.vertices.get(0), graph.vertices.get(1)));
+        graph.edges.add(new Edge(graph.vertices.get(0), graph.vertices.get(2)));
+        graph.edges.add(new Edge(graph.vertices.get(1), graph.vertices.get(3)));
+        graph.edges.add(new Edge(graph.vertices.get(2), graph.vertices.get(4)));
+        graph.edges.add(new Edge(graph.vertices.get(1), graph.vertices.get(4)));
+        graph.edges.add(new Edge(graph.vertices.get(3), graph.vertices.get(4)));
         
         return graph;
     }
