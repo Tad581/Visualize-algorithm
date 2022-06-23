@@ -10,9 +10,9 @@ public class Edge {
         this.start = start;
         this.end = end;
     }
-    private boolean isDirected = false;
-    private boolean isWeighted = false;
-    private int label = 0;
+    // private boolean isDirected = false;
+    // private boolean isWeighted = false;
+    // private int label = 0;
 
     public Vertex getStart() {
         return start;

@@ -23,17 +23,18 @@ public class Graph {
     public static Graph autoGenerateGraph () {
         Graph graph = new Graph();
         
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             Vertex tempVertex = new Vertex(i);
             graph.getVertices().add(tempVertex);
         }
 
         graph.edges.add(new Edge(graph.getVertices().get(0), graph.getVertices().get(1)));
         graph.edges.add(new Edge(graph.getVertices().get(0), graph.getVertices().get(2)));
+        graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(2)));
         graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(3)));
-        graph.edges.add(new Edge(graph.getVertices().get(2), graph.getVertices().get(4)));
-        graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(4)));
+        graph.edges.add(new Edge(graph.getVertices().get(2), graph.getVertices().get(3)));
         graph.edges.add(new Edge(graph.getVertices().get(3), graph.getVertices().get(4)));
+        graph.edges.add(new Edge(graph.getVertices().get(2), graph.getVertices().get(5)));
         
         return graph;
     }
@@ -51,7 +52,7 @@ public class Graph {
         }
     } 
 
-    public Vertex neiborghVertex(Vertex v){
+    public Vertex neighborVertex(Vertex v){
         Vertex tmp = null;
         for(int i = 0; i < edges.size(); i++){
             if(edges.get(i).getStart() == v || edges.get(i).getEnd() == v){
@@ -68,6 +69,24 @@ public class Graph {
             }
         }
         return tmp;
+    }
+
+    public ArrayList<Vertex> neighborUncheck(Vertex v){
+        ArrayList<Vertex> neighborVer = new ArrayList<Vertex>();
+        Vertex tmp = null;
+        for(int i = 0; i < edges.size(); i++){
+            if(edges.get(i).getStart() == v || edges.get(i).getEnd() == v){
+                if(edges.get(i).getStart() == v){
+                    tmp = edges.get(i).getEnd();
+                    neighborVer.add(tmp);
+                }
+                if(edges.get(i).getEnd() == v){
+                    tmp = edges.get(i).getStart();
+                    neighborVer.add(tmp);
+                }
+            }
+        }
+        return neighborVer;
     }
 
 }
