@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Graph {
     public int numberOfVertices = 0;
     public ArrayList<Vertex> vertices = new ArrayList<Vertex>();
-    private ArrayList<Edge> edges = new ArrayList<Edge>();
+    public ArrayList<Edge> edges = new ArrayList<Edge>();
 
     public Graph() {
     }
