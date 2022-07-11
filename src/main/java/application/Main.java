@@ -13,29 +13,30 @@ import java.io.IOException;
  */
 public class Main extends Application {
 
-    public static Stage mainWindow;
-	
+	public static Stage mainWindow;
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			mainWindow = primaryStage;
-			
+
 			Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-			
+
 			Scene scene = new Scene(root);
-			
+
 			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			
+
 			mainWindow.setScene(scene);
+			mainWindow.setMaximized(true);
 			mainWindow.setTitle("JavaFx demo");
 			mainWindow.show();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-    public static void main(String[] args) {
-        launch();
-    }
+	public static void main(String[] args) {
+		launch();
+	}
 
 }
