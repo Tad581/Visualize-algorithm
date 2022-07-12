@@ -3,22 +3,33 @@ package application.Algorithm.Step.Detail;
 import application.Algorithm.Step.Step;
 
 public class Detail extends Step{
-    private int u;
-    private int v;
+    private int FromVerID;
+    private int ToVerID;
+
     public Detail(){
         
     }
-    public int getU() {
-        return u;
+
+    public Detail(int from,int to){
+        this.FromVerID = from;
+        this.ToVerID = to;
     }
-    public void setU(int u) {
-        this.u = u;
+
+    public int getFromVerID() {
+        return FromVerID;
     }
-    public int getV() {
-        return v;
+
+    public void setFromVerID(int fromVerID) {
+        FromVerID = fromVerID;
     }
-    public void setV(int v) {
-        this.v = v;
+
+    public int getToVerID() {
+        return ToVerID;
     }
+
+    public void setToVerID(int toVerID) {
+        ToVerID = toVerID;
+    }
+
     
 }

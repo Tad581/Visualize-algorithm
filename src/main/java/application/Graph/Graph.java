@@ -90,4 +90,22 @@ public class Graph {
         return neighborVer;
     }
 
+    public ArrayList<Edge> getEdges() {
+        return edges;
+    }
+
+    public void setEdges(ArrayList<Edge> edges) {
+        this.edges = edges;
+    }
+
+    public Edge GetedgewithFromTo(int from,int to){
+        Edge e = new Edge();
+        for(int i = 0; i < edges.size(); i++){
+            if(edges.get(i).getStart().getId() == from && edges.get(i).getEnd().getId() == to){
+                e = edges.get(i);
+                break;
+            }
+        }
+        return e;
+    }
 }

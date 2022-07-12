@@ -7,9 +7,13 @@ import application.Graph.Graph;
 
 public abstract class Algorithm{
     private Graph g;
-    ArrayList<Step> listofStep = new ArrayList<Step>();
+    ArrayList<Step> listofStep = new ArrayList<Step>();  //Pseu
+    ArrayList<Step> listofDetail = new ArrayList<Step>(); //Detail
     public Algorithm(Graph g){
         this.g =g;
+    }
+    public Algorithm(){
+
     }
     public Graph getG() {
         return g;
@@ -27,6 +31,8 @@ public abstract class Algorithm{
         this.listofStep = listofStep;
     };
 
+    
+
     public void PrintStep(){
         for (int i = 0; i< this.listofStep.size(); i++){
             if(this.listofStep.get(i).toString() != null){
@@ -34,6 +40,12 @@ public abstract class Algorithm{
             }
             
         }
+    }
+    public ArrayList<Step> getListofDetail() {
+        return listofDetail;
+    }
+    public void setListofDetail(ArrayList<Step> listofDetail) {
+        this.listofDetail = listofDetail;
     }
     
 }

@@ -56,4 +56,9 @@ public class GEdge extends Edge {
 		g.drawPane.getChildren().removeAll(line, label);
 	}
 
+	public Arrow getLine() {
+		return line;
+	}
+
+	
 }

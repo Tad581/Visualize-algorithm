@@ -14,7 +14,7 @@ public class GNode extends Vertex{
 	static final int	R = 18;
 	int			x, y;
 	GGraph		g;
-	Circle		c;
+	public Circle		c;
 	Text		label;
 	boolean		selected;
 	
@@ -48,4 +48,14 @@ public class GNode extends Vertex{
 	public void remove() {
 		g.drawPane.getChildren().removeAll(c, label);
 	}
+
+	public void setC(Circle c) {
+		this.c = c;
+	}
+
+	public  Circle getC() {
+		return c;
+	}
+
+	
 }

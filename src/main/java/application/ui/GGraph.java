@@ -68,10 +68,10 @@ public class GGraph extends Graph {
 
 	private void addEdge(GNode n1, GNode n2) {
 		GEdge edge = new GEdge(this, n1, n2);
-		if (edges.contains(edge)) {
+		if (this.getEdges().contains(edge)) {
 			return;
 		}
-		edges.add(edge);
+		this.getEdges().add(edge);
 		// adjList.get(n1.getId()).add(n2.getId());
 	}
 

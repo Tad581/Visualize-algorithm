@@ -2,9 +2,8 @@ package application.Algorithm.DFS;
 
 import application.Algorithm.Algorithm;
 import application.Algorithm.Step.Step;
-import application.Algorithm.Step.CreateStep.CreateDetailStep;
-import application.Algorithm.Step.CreateStep.CreatePseudoStep;
-import application.Algorithm.Step.CreateStep.CreateStep;
+import application.Algorithm.Step.Detail.Detail;
+import application.Algorithm.Step.Pseudo.Pseudo;
 import application.Graph.Graph;
 import application.Graph.Vertex.Vertex;
 
@@ -14,6 +13,35 @@ public class DFS extends Algorithm{
     private Stack<Vertex> Travel = new Stack<Vertex>();
     public DFS(Graph g) {
         super(g);
+    }
+
+    public DFS(){
+        
+    }
+
+    public ArrayList<Step> setPseu(){
+        ArrayList<Step> list = new ArrayList<Step>();
+        list.add(new Pseudo(0)); 
+        list.get(0).setStepContent("DFS(u)");
+
+
+        list.add(new Pseudo(1)); 
+        list.get(1).setStepContent("For each neighbor v of u");
+
+
+        list.add(new Pseudo(2)); 
+        list.get(2).setStepContent("if v is unvisited, tree edge, DFS(v)");
+
+
+        list.add(new Pseudo(3)); 
+        list.get(3).setStepContent("else if v is explored, back edge");
+
+
+        list.add(new Pseudo(4)); 
+        list.get(4).setStepContent("else if v is visited, cross edge");
+
+        
+        return list;
     }
 
     
@@ -26,30 +54,29 @@ public class DFS extends Algorithm{
         Travel = travel;
     }
 
-    public static Step createStep(CreateStep step){
-        return step.CreateOneStep();
-    }
 
     public void traversal(int id){
         Stack<Vertex> stack = new Stack<>();
         ArrayList<Step> listStep = new ArrayList<Step>();
+        ArrayList<Step> listStepDetail = new ArrayList<Step>();
         stack.push(this.getG().getVertices().get(id));
         int StepId = 0;
+        int StepDeId = 0;
         this.getG().getVertices().get(id).setTraveled(true);
-        // System.out.println("Start travel " + this.getG().getVertices().get(id).getId());
-        // this.travellist = this.travellist + this.g.getVertices().get(0).getId();
+
         while(!stack.isEmpty()){
             Vertex curVertex = stack.peek();
-            // System.out.println("Searching neighbor vertices of " + curVertex.getId());
-            // Vertex ver = this.getG().neighborVertex(curVertex);
+
             ArrayList<Vertex> neighbor = this.getG().neighborUncheck(curVertex);
-            listStep.add(createStep(new CreatePseudoStep())); 
+            listStep.add(new Pseudo(0)); 
             listStep.get(StepId).setStepContent("DFS(u)");
-            // System.out.println(listStep.get(StepId).toString());
+
             StepId++;
-            
-            listStep.add(createStep(new CreateDetailStep()));
-            listStep.get(StepId).setStepContent("DFS(" + curVertex.getId() + ")");
+
+            listStepDetail.add(new Detail());
+            listStepDetail.get(StepDeId).setStepContent("DFS(" + curVertex.getId() + ")");
+            ((Detail) listStepDetail.get(StepDeId)).setFromVerID(curVertex.getId());
+            StepDeId++;
 
             if(neighbor.size() == 0){
                 System.out.println("there no way to travel");
@@ -59,49 +86,59 @@ public class DFS extends Algorithm{
                 for(int i = 0;i < neighbor.size(); i++){
                     if(neighbor.get(i).isTraveled() == false){
                         
-                        listStep.add(createStep(new CreatePseudoStep()));
-                        StepId++;
+                        listStep.add(new Pseudo(1));
                         listStep.get(StepId).setStepContent("For each neighbor v of u");
 
-                        listStep.add(createStep(new CreateDetailStep()));
                         StepId++;
-                        listStep.get(StepId).setStepContent("Try" + curVertex.getId() + " -> " + neighbor.get(i).getId());
 
-                        listStep.add(createStep(new CreatePseudoStep()));
-                        StepId++;
+                        listStepDetail.add(new Detail(curVertex.getId(),neighbor.get(i).getId()));
+                        listStepDetail.get(StepDeId).setStepContent("Try " + curVertex.getId() + " -> " + neighbor.get(i).getId());
+
+                        StepDeId++;
+
+                        listStep.add(new Pseudo(2));
                         listStep.get(StepId).setStepContent("if v is unvisited, tree edge, DFS(v)");
 
-                        listStep.add(createStep(new CreateDetailStep()));
                         StepId++;
-                        listStep.get(StepId).setStepContent("Vertex" + neighbor.get(i).getId() + " is unvisited ");
+
+                        listStepDetail.add(new Detail());
+                        listStepDetail.get(StepDeId).setStepContent("Vertex " + neighbor.get(i).getId() + " is unvisited ");
+                        ((Detail) listStepDetail.get(StepDeId)).setToVerID(neighbor.get(i).getId());
+
+                        StepDeId++;
 
                         neighbor.get(i).setTraveled(true);
-                        // System.out.println("push neibor to stack");
+
                         stack.push(neighbor.get(i));
                         check = 1;
                         break;
                     }
                     else{
-                        // System.out.println("neighbor istraveled");
-                        listStep.add(createStep(new CreatePseudoStep()));
-                        StepId++;
+
+                        listStep.add(new Pseudo(3));
                         listStep.get(StepId).setStepContent("else if v is explored, back edge");
 
-                        listStep.add(createStep(new CreateDetailStep()));
                         StepId++;
-                        listStep.get(StepId).setStepContent("Vertex" + neighbor.get(i).getId() + " is exp]lored ,back edge ");
+
+                        listStepDetail.add(new Detail(curVertex.getId(),neighbor.get(i).getId()));
+                        listStepDetail.get(StepDeId).setStepContent("Vertex " + neighbor.get(i).getId() + " is explored ,back edge ");
+
+                        StepDeId++;
                     }
                 }
                 if(check == 0){
-                    // System.out.println("No neighbor vertices...");
-                    // System.out.println("Clear stack...");
-                    listStep.add(createStep(new CreatePseudoStep()));
-                    StepId++;
+
+                    listStep.add(new Pseudo(4));
                     listStep.get(StepId).setStepContent("else if v is visited, cross edge");
 
-                    listStep.add(createStep(new CreateDetailStep()));
                     StepId++;
-                    listStep.get(StepId).setStepContent("Finish DFS(" + curVertex.getId() + ") backtrack ");
+
+                    listStepDetail.add(new Detail());
+                    listStepDetail.get(StepDeId).setStepContent("Finish DFS(" + curVertex.getId() + ") backtrack ");
+                    ((Detail) listStepDetail.get(StepDeId)).setFromVerID(curVertex.getId());
+
+
+                    StepDeId++;
 
                     this.Travel.add(curVertex);
                     stack.pop();
@@ -109,5 +146,6 @@ public class DFS extends Algorithm{
             }
         }
         this.setListofStep(listStep);
+        this.setListofDetail(listStepDetail);
     }
 }

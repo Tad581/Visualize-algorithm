@@ -6,6 +6,9 @@ public class Edge {
     private Vertex start;
     private Vertex end;
     private boolean isDirected; 
+    public Edge(){
+        
+    }
     public Edge(Vertex start, Vertex end) {
         this.start = start;
         this.end = end;
