@@ -80,11 +80,12 @@ public class DFS extends Algorithm{
 
             if(neighbor.size() == 0){
                 System.out.println("there no way to travel");
+                break;
             }
             else{
                 int check = 0;
                 for(int i = 0;i < neighbor.size(); i++){
-                    if(neighbor.get(i).isTraveled() == false){
+                    if(neighbor.get(i).isTraveled() == false && this.getG().neighborCheck(curVertex, neighbor.get(i)) == true){
                         
                         listStep.add(new Pseudo(1));
                         listStep.get(StepId).setStepContent("For each neighbor v of u");
@@ -113,7 +114,7 @@ public class DFS extends Algorithm{
                         check = 1;
                         break;
                     }
-                    else{
+                    else if (neighbor.get(i).isTraveled() == true && this.getG().neighborCheck(curVertex, neighbor.get(i)) == true){
 
                         listStep.add(new Pseudo(3));
                         listStep.get(StepId).setStepContent("else if v is explored, back edge");

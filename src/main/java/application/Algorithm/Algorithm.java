@@ -37,6 +37,7 @@ public abstract class Algorithm{
         for (int i = 0; i< this.listofStep.size(); i++){
             if(this.listofStep.get(i).toString() != null){
                 System.out.println(this.listofStep.get(i).toString());
+                System.out.println(this.listofDetail.get(i).toString());
             }
             
         }

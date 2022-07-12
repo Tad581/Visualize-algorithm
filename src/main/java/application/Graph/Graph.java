@@ -24,18 +24,13 @@ public class Graph {
     public static Graph autoGenerateGraph () {
         Graph graph = new Graph();
         
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 3; i++) {
             Vertex tempVertex = new Vertex(i);
             graph.getVertices().add(tempVertex);
         }
 
-        graph.edges.add(new Edge(graph.getVertices().get(0), graph.getVertices().get(1)));
-        graph.edges.add(new Edge(graph.getVertices().get(0), graph.getVertices().get(2)));
-        graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(2)));
-        graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(3)));
-        graph.edges.add(new Edge(graph.getVertices().get(2), graph.getVertices().get(3)));
-        graph.edges.add(new Edge(graph.getVertices().get(3), graph.getVertices().get(4)));
-        graph.edges.add(new Edge(graph.getVertices().get(2), graph.getVertices().get(5)));
+        graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(0)));
+        graph.edges.add(new Edge(graph.getVertices().get(2), graph.getVertices().get(0)));
         
         return graph;
     }
@@ -53,23 +48,13 @@ public class Graph {
         }
     } 
 
-    public Vertex neighborVertex(Vertex v){
-        Vertex tmp = null;
+    public boolean neighborCheck(Vertex from, Vertex to){
         for(int i = 0; i < edges.size(); i++){
-            if(edges.get(i).getStart() == v || edges.get(i).getEnd() == v){
-                if(edges.get(i).getStart() == v && edges.get(i).getEnd().isTraveled() == false){
-                    edges.get(i).getEnd().setTraveled(true);
-                    tmp = edges.get(i).getEnd();
-                    break;
-                }
-                if(edges.get(i).getEnd() == v && edges.get(i).getStart().isTraveled() == false){
-                    edges.get(i).getStart().setTraveled(true);
-                    tmp = edges.get(i).getStart();
-                    break;
-                }
+            if(edges.get(i).getStart() == from && edges.get(i).getEnd() == to){
+                return true;
             }
         }
-        return tmp;
+        return false;
     }
 
     public ArrayList<Vertex> neighborUncheck(Vertex v){

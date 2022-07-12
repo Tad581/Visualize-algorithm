@@ -10,7 +10,7 @@ public class Main {
         Graph graph = Graph.autoGenerateGraph();
         graph.displayGraph(graph);
         DFS dfs = new DFS(graph);
-        dfs.traversal(5);
+        dfs.traversal(0);
         dfs.PrintStep();
         // System.out.println("" + dfs.getTravellist());
         // for(int i = 0; i< dfs.getTravel().size(); i++){
