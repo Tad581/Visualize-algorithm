@@ -61,7 +61,7 @@ public class GGraph extends Graph {
 	}
 
 	// public void deleteNode() throws Exception {
-	// super.deleteNode(selectedNode.getId());
+	// // super.deleteNode(selectedNode.getId());
 	// selectedNode.remove();
 	// selectedNode = null;
 	// }
@@ -75,11 +75,11 @@ public class GGraph extends Graph {
 		// adjList.get(n1.getId()).add(n2.getId());
 	}
 
-	public void deleteEdge() throws Exception {
-		// super.deleteEdge(selectedEdge.getStart(), selectedEdge.getEnd());
-		selectedEdge.remove();
-		selectedEdge = null;
-	}
+	// public void deleteEdge() throws Exception {
+	// 	// super.deleteEdge(selectedEdge.getStart(), selectedEdge.getEnd());
+	// 	selectedEdge.remove();
+	// 	selectedEdge = null;
+	// }
 
 	void setSelectedEdge(GEdge e) {
 		selectedEdge = e;

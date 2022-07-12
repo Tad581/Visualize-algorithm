@@ -15,7 +15,6 @@ public class GEdge extends Edge {
 	GGraph g;
 	GNode nFrom, nTo;
 	Arrow line;
-	Text label;
 
 	public GEdge(GGraph g, GNode n1, GNode n2) {
 		super(n1, n2);
@@ -29,8 +28,6 @@ public class GEdge extends Edge {
 
 		if (line != null)
 			g.drawPane.getChildren().remove(line);
-		if (label != null)
-			g.drawPane.getChildren().remove(label);
 
 		Vector2 dis = new Vector2(nTo.x - nFrom.x, nTo.y - nFrom.y);
 		double rat = (GNode.R + 2) / dis.length();
@@ -41,19 +38,19 @@ public class GEdge extends Edge {
 				nFrom.x + disX, nFrom.y + disY,
 				nTo.x - disX, nTo.y - disY);
 
-		label = new Text(
-				(nFrom.x + nTo.x) >> 1,
-				(nFrom.y + nTo.y) >> 1,
-				Long.valueOf(1).toString());
+		// label = new Text(
+		// 		(nFrom.x + nTo.x) >> 1,
+		// 		(nFrom.y + nTo.y) >> 1,
+		// 		Long.valueOf(1).toString());
 
-		label.getTransforms().add(new Rotate(dis.getAlpha(), (nFrom.x + nTo.x) >> 1, (nFrom.y + nTo.y) >> 1));
+		// label.getTransforms().add(new Rotate(dis.getAlpha(), (nFrom.x + nTo.x) >> 1, (nFrom.y + nTo.y) >> 1));
 
-		g.drawPane.getChildren().addAll(line, label);
+		g.drawPane.getChildren().addAll(line);
 
 	}
 
 	public void remove() {
-		g.drawPane.getChildren().removeAll(line, label);
+		g.drawPane.getChildren().removeAll(line);
 	}
 
 }

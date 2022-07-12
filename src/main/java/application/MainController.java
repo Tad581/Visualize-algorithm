@@ -42,6 +42,26 @@ public class MainController implements Initializable {
             { 1, 3 }, { 1, 4 }, { 1, 4 }, { 2, 4 }, { 2, 4 }, { 3, 4 }, { 3, 4 }, { 4, 4 }, { 2, 2 }, { 2, 4 },
             { 3, 2 }, { 3, 4 }, { 4, 2 }, { 4, 4 } };
 
+    private int[][] exGraph3Vertex = { { 1, 1 }, { 2, 1 }, { 2, 2 }, { 3, 1 }, { 4, 1 }, { 5, 1 }, { 3, 2 }, { 4, 2 } };
+    private int[][] exGraph3Edge = { { 1, 1 }, { 2, 1 }, { 1, 1 }, { 2, 2 }, { 2, 1 }, { 2, 2 }, { 2, 1 }, { 3, 1 },
+            { 2, 2 }, { 3, 1 }, { 2, 2 }, { 5, 1 }, { 3, 1 }, { 4, 1 }, { 4, 2 }, { 3, 2 } };
+
+    private int[][] exGraph4Vertex = { { 1, 1 }, { 2, 1 }, { 2, 2 }, { 3, 1 }, { 4, 1 }, { 5, 1 }, { 4, 2 }, { 5, 2 } };
+    private int[][] exGraph4Edge = { { 1, 1 }, { 2, 1 }, { 2, 1 }, { 3, 1 }, { 2, 2 }, { 2, 1 }, { 3, 1 }, { 2, 2 },
+            { 3, 1 }, { 4, 1 }, { 4, 1 }, { 5, 1 }, { 5, 1 }, { 5, 2 }, { 5, 2 }, { 4, 2 }, { 4, 2 }, { 4, 1 } };
+
+    private int[][] exGraph5Vertex = { { 3, 3 }, { 1, 1 }, { 4, 4 }, { 6, 1 }, { 5, 5 } };
+    private int[][] exGraph5Edge = { { 3, 3 }, { 1, 1 }, { 3, 3 }, { 6, 1 }, { 3, 3 }, { 4, 4 }, { 1, 1 }, { 6, 1 },
+            { 1, 1 }, { 5, 5 }, { 4, 4 }, { 5, 5 }, { 6, 1 }, { 5, 5 } };
+
+    private int[][] exGraph6Vertex = { { 1, 2 }, { 2, 1 }, { 2, 3 }, { 3, 2 }, { 4, 2 } };
+    private int[][] exGraph6Edge = { { 1, 2 }, { 2, 1 }, { 1, 2 }, { 2, 3 }, { 2, 1 }, { 3, 2 }, { 2, 3 }, { 3, 2 },
+            { 3, 2 }, { 4, 2 } };
+
+    private int[][] exGraph7Vertex = { { 1, 1 }, { 2, 1 }, { 3, 1 }, { 4, 1 }, { 2, 2 } };
+    private int[][] exGraph7Edge = { { 1, 1 }, { 2, 1 }, { 1, 1 }, { 2, 2 }, { 2, 1 }, { 3, 1 }, { 3, 1 }, { 2, 1 },
+            { 3, 1 }, { 4, 1 } };
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         isExploring = false;
@@ -83,6 +103,10 @@ public class MainController implements Initializable {
     }
 
     public void handleExampleGraph(ActionEvent e) {
+        // for (int i = 0; i < tGraph.vertices.size(); i++) {
+        // tGraph.vertices[i].remove()
+        // }
+        tGraph.removeGraph();
         String itemId = ((Styleable) e.getSource()).getId();
         if (itemId.equals("exGraph1")) {
             for (int i = 0; i < exGraph1Vertex.length; i++) {
@@ -104,12 +128,42 @@ public class MainController implements Initializable {
             for (int j = exGraph2Edge.length - 1; j >= 0; j--) {
                 tGraph.processClick(exGraph2Edge[j][0] * 100, exGraph2Edge[j][1] * 100);
             }
+        } else if (itemId.equals("exGraph3")) {
+            for (int i = 0; i < exGraph3Vertex.length; i++) {
+                tGraph.processClick(exGraph3Vertex[i][0] * 100, exGraph3Vertex[i][1] * 100);
+            }
+            for (int j = 0; j < exGraph3Edge.length; j++) {
+                tGraph.processClick(exGraph3Edge[j][0] * 100, exGraph3Edge[j][1] * 100);
+            }
+        } else if (itemId.equals("exGraph4")) {
+            for (int i = 0; i < exGraph4Vertex.length; i++) {
+                tGraph.processClick(exGraph4Vertex[i][0] * 100, exGraph4Vertex[i][1] * 100);
+            }
+            for (int j = 0; j < exGraph4Edge.length; j++) {
+                tGraph.processClick(exGraph4Edge[j][0] * 100, exGraph4Edge[j][1] * 100);
+            }
+        } else if (itemId.equals("exGraph5")) {
+            for (int i = 0; i < exGraph5Vertex.length; i++) {
+                tGraph.processClick(exGraph5Vertex[i][0] * 50, exGraph5Vertex[i][1] * 50);
+            }
+            for (int j = 0; j < exGraph5Edge.length; j++) {
+                tGraph.processClick(exGraph5Edge[j][0] * 50, exGraph5Edge[j][1] * 50);
+            }
+        } else if (itemId.equals("exGraph6")) {
+            for (int i = 0; i < exGraph6Vertex.length; i++) {
+                tGraph.processClick(exGraph6Vertex[i][0] * 100, exGraph6Vertex[i][1] * 100);
+            }
+            for (int j = 0; j < exGraph6Edge.length; j++) {
+                tGraph.processClick(exGraph6Edge[j][0] * 100, exGraph6Edge[j][1] * 100);
+            }
+        } else if (itemId.equals("exGraph7")) {
+            for (int i = 0; i < exGraph7Vertex.length; i++) {
+                tGraph.processClick(exGraph7Vertex[i][0] * 100, exGraph7Vertex[i][1] * 100);
+            }
+            for (int j = 0; j < exGraph7Edge.length; j++) {
+                tGraph.processClick(exGraph7Edge[j][0] * 100, exGraph7Edge[j][1] * 100);
+            }
         }
-    }
-
-    public void handleOptionCheckbox(ActionEvent e) {
-
-        System.out.println(isDirection.isSelected());
     }
 
 }
