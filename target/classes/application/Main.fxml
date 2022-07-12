@@ -26,6 +26,7 @@
           <Menu mnemonicParsing="false" text="Algorithm">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#DFS" text="DFS" />
+                  <MenuItem mnemonicParsing="false" onAction="#ToLo" text="ToLo" />
                </items></Menu>
         </menus>
       </MenuBar>

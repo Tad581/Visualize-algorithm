@@ -1,4 +1,4 @@
-package application;
+package application.Thread;
 
 import application.Algorithm.DFS.DFS;
 import application.Algorithm.Step.Step;
@@ -12,12 +12,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 
-public class MyThread extends Thread{
-    private ListView<Step> mylist = new ListView<>();
-    private Label mylabel = new Label();
-    public GGraph g;
+public class MyThreadDFS extends RootThread{
+    public MyThreadDFS(ListView<Step> mylist, Label mylabel) {
+        super(mylist, mylabel);
+    }
+    public MyThreadDFS(){
+        
+    }
     public DFS mydfs = new DFS();
-
+    public GGraph g;
 
     public void run(){
         for(int i =0;i<mydfs.getListofStep().size();i++){
@@ -25,40 +28,29 @@ public class MyThread extends Thread{
             changvertex(j, mydfs.getListofDetail().get(i));
             String s = mydfs.getListofDetail().get(i).toString();
             changeLabel(s);
-            mylist.getSelectionModel().select(j);
+            this.getMylist().getSelectionModel().select(j);
             
-        try{
-            Thread.currentThread();
-            Thread.sleep(1000);
-        } catch(InterruptedException e){
-            e.printStackTrace();
-        }
+            try{
+                Thread.currentThread();
+                Thread.sleep(1000);
+            } catch(InterruptedException e){
+                e.printStackTrace();
+            }
         }
     }
 
-
-    public void setMylist(ListView mylist) {
-        this.mylist = mylist;
+    
+    public void setMydfs(DFS mydfs) {
+        this.mydfs = mydfs;
     }
-
 
     public void setG(GGraph g) {
         this.g = g;
     }
 
-
-    public void setMydfs(DFS mydfs) {
-        this.mydfs = mydfs;
-    }
-
-
-    public void setMylabel(Label mylabel) {
-        this.mylabel = mylabel;
-    }
-
     public void changeLabel(String s){
         Platform.runLater(() -> {
-            mylabel.setText(s);
+            this.getMylabel().setText(s);
           });
     }
 
@@ -71,14 +63,14 @@ public class MyThread extends Thread{
                     break;
                 case 1:
                     GEdge e = (GEdge) g.GetedgewithFromTo(((Detail) detail).getFromVerID(), ((Detail) detail).getToVerID());
-                    e.getLine().setFill(Color.SKYBLUE);
+                    e.getLine().setFill(Color.ORANGE);
                     GNode vfrom = (GNode) g.getVertices().get(((Detail) detail).getFromVerID());
                     vfrom.getC().setFill(Color.WHITE);
-                    vfrom.getC().setStroke(Color.ORANGE);
+                    vfrom.getC().setStroke(Color.SKYBLUE);
                     break;
                 case 2:
                     GNode vto = (GNode) g.getVertices().get(((Detail) detail).getToVerID());
-                    vto.getC().setStroke(Color.ORANGE);
+                    vto.getC().setStroke(Color.SKYBLUE);
                     break;
                 case 3:
                     break;
@@ -90,4 +82,5 @@ public class MyThread extends Thread{
             }
           });
     }
+    
 }

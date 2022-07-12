@@ -4,7 +4,7 @@ import application.Algorithm.Step.Step;
 
 public class Detail extends Step{
     private int FromVerID;
-    private int ToVerID;
+    private int ToVerID = 0;
 
     public Detail(){
         

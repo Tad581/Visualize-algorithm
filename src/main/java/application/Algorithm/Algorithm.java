@@ -31,7 +31,9 @@ public abstract class Algorithm{
         this.listofStep = listofStep;
     };
 
-    
+    public ArrayList<Step> setPseu(){
+        return null;
+    }
 
     public void PrintStep(){
         for (int i = 0; i< this.listofStep.size(); i++){

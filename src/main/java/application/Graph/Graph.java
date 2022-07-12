@@ -1,5 +1,6 @@
 package application.Graph;
 
+// import application.Algorithm.Step.Step;
 import application.Graph.Edge.Edge;
 import application.Graph.Vertex.Vertex;
 import java.util.ArrayList;
@@ -21,16 +22,27 @@ public class Graph {
         this.vertices = vertices;
     }
 
+    public ArrayList<Edge> getEdges() {
+        return edges;
+    }
+
+    public void setEdges(ArrayList<Edge> edges) {
+        this.edges = edges;
+    }
+
     public static Graph autoGenerateGraph () {
         Graph graph = new Graph();
         
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             Vertex tempVertex = new Vertex(i);
             graph.getVertices().add(tempVertex);
         }
 
-        graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(0)));
-        graph.edges.add(new Edge(graph.getVertices().get(2), graph.getVertices().get(0)));
+        graph.edges.add(new Edge(graph.getVertices().get(0), graph.getVertices().get(1)));
+        graph.edges.add(new Edge(graph.getVertices().get(0), graph.getVertices().get(2)));
+        graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(3)));
+        graph.edges.add(new Edge(graph.getVertices().get(2), graph.getVertices().get(3)));
+        graph.edges.add(new Edge(graph.getVertices().get(3), graph.getVertices().get(4)));
         
         return graph;
     }
@@ -41,7 +53,7 @@ public class Graph {
         for (int i = 0; i < graph.getVertices().size(); i++) {
             System.out.print(graph.getVertices().get(i).getId() + " - ");
         }
-        System.out.println("*************************");
+        System.out.println("\n*************************");
         System.out.println("Edges: ");
         for (int i = 0; i < graph.edges.size(); i++) {
             System.out.println(graph.edges.get(i).getStart().getId() + " - " + graph.edges.get(i).getEnd().getId());
@@ -55,6 +67,16 @@ public class Graph {
             }
         }
         return false;
+    }
+
+    public void SetVerDegree(){
+        for(int i = 0; i < vertices.size(); i++){
+            for(int j = 0; j<vertices.size(); j++){
+                if(neighborCheck(vertices.get(i), vertices.get(j)) == true){
+                    vertices.get(j).setDegree(vertices.get(j).getDegree() + 1);
+                }
+            }
+        }
     }
 
     public ArrayList<Vertex> neighborUncheck(Vertex v){
@@ -75,13 +97,6 @@ public class Graph {
         return neighborVer;
     }
 
-    public ArrayList<Edge> getEdges() {
-        return edges;
-    }
-
-    public void setEdges(ArrayList<Edge> edges) {
-        this.edges = edges;
-    }
 
     public Edge GetedgewithFromTo(int from,int to){
         Edge e = new Edge();
