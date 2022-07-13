@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Algorithm.Algorithm;
+import application.Algorithm.CutVertex.CutVertex;
 import application.Algorithm.DFS.DFS;
 import application.Algorithm.Step.Step;
 import application.Algorithm.Topological.TOPOLO;
 import application.Thread.MyThreadDFS;
+import application.Thread.MythreadCutVer;
 import application.Thread.MythreadToLo;
 import application.Thread.RootThread;
 import application.ui.GGraph;
@@ -94,4 +96,16 @@ public class MainController implements Initializable {
         mythreadToLo.start();
     }
 
+    @FXML
+    MythreadCutVer mythreadCutVer = new MythreadCutVer(listPseu, ListDetail);
+
+    public void CutVer(){
+        CutVertex cutvertex = new CutVertex(tGraph);
+        cutvertex.CutverTraversal(0,0);
+
+        mythreadCutVer.setG(tGraph);
+        SetPseuStep(cutvertex,mythreadCutVer);
+        mythreadCutVer.setMycutver(cutvertex);
+        mythreadCutVer.start();
+    }
 }

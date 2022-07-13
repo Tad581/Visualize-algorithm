@@ -4,6 +4,26 @@ public class Vertex {
     private int id;
     private boolean isTraveled = false;
     private int degree = 0;
+    private int num;
+    private int low;
+
+    
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public int getLow() {
+        return low;
+    }
+
+    public void setLow(int low) {
+        this.low = low;
+    }
 
     public int getDegree() {
         return degree;

@@ -27,6 +27,7 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#DFS" text="DFS" />
                   <MenuItem mnemonicParsing="false" onAction="#ToLo" text="ToLo" />
+                  <MenuItem mnemonicParsing="false" onAction="#CutVer" text="CutVer" />
                </items></Menu>
         </menus>
       </MenuBar>

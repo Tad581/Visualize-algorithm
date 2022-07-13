@@ -4,7 +4,8 @@ import application.Algorithm.Step.Step;
 
 public class Detail extends Step{
     private int FromVerID;
-    private int ToVerID = 0;
+    private int ToVerID;
+    private boolean isCutVer = false;
 
     public Detail(){
         
@@ -29,6 +30,14 @@ public class Detail extends Step{
 
     public void setToVerID(int toVerID) {
         ToVerID = toVerID;
+    }
+
+    public boolean isCutVer() {
+        return isCutVer;
+    }
+
+    public void setCutVer(boolean isCutVer) {
+        this.isCutVer = isCutVer;
     }
 
     
