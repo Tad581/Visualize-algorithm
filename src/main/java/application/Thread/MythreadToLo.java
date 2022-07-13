@@ -12,43 +12,45 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 
-public class MythreadToLo extends RootThread{
+public class MythreadToLo extends RootThread {
     public MythreadToLo(ListView<Step> mylist, Label mylabel) {
         super(mylist, mylabel);
     }
-    public MythreadToLo(){
-        
+
+    public MythreadToLo() {
+
     }
+
     public TOPOLO mytolo = new TOPOLO();
     public GGraph g;
 
-    public void run(){
-        for(int i =0;i<mytolo.getListofStep().size();i++){
+    public void run() {
+        for (int i = 0; i < mytolo.getListofStep().size(); i++) {
             int j = ((Pseudo) mytolo.getListofStep().get(i)).getStepID();
             changvertex(j, mytolo.getListofDetail().get(i));
             String s = mytolo.getListofDetail().get(i).toString();
             changeLabel(s);
             this.getMylist().getSelectionModel().select(j);
-            
-            try{
+
+            try {
                 Thread.currentThread();
                 Thread.sleep(1000);
-            } catch(InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void changvertex(int stepid, Step detail){
+    public void changvertex(int stepid, Step detail) {
         Platform.runLater(() -> {
-            switch(stepid){
+            switch (stepid) {
                 case 0:
                     GNode v = (GNode) g.getVertices().get(((Detail) detail).getFromVerID());
                     v.getC().setFill(Color.ORANGE);
                     break;
                 case 1:
                     int checkPre = ((Detail) detail).getFromVerID();
-                    if(checkPre >= 0){
+                    if (checkPre >= 0) {
                         GNode vPre = (GNode) g.getVertices().get(((Detail) detail).getFromVerID());
                         vPre.getC().setFill(Color.WHITE);
                         vPre.getC().setStroke(Color.ORANGE);
@@ -62,12 +64,13 @@ public class MythreadToLo extends RootThread{
                     vto.getC().setFill(Color.ORANGE);
                     break;
                 case 3:
-                    GEdge e = (GEdge) g.GetedgewithFromTo(((Detail) detail).getFromVerID(), ((Detail) detail).getToVerID());
+                    GEdge e = (GEdge) g.GetedgewithFromTo(((Detail) detail).getFromVerID(),
+                            ((Detail) detail).getToVerID());
                     e.getLine().setFill(Color.GRAY);
                     break;
                 case 4:
                     int check = ((Detail) detail).getToVerID();
-                    if(check != 0){
+                    if (check != 0) {
                         GNode setv = (GNode) g.getVertices().get(((Detail) detail).getToVerID());
                         setv.getC().setFill(Color.WHITE);
                         setv.getC().setStroke(Color.SKYBLUE);
@@ -76,13 +79,13 @@ public class MythreadToLo extends RootThread{
                 default:
                     break;
             }
-          });
+        });
     }
 
-    public void changeLabel(String s){
+    public void changeLabel(String s) {
         Platform.runLater(() -> {
             this.getMylabel().setText(s);
-          });
+        });
     }
 
     public TOPOLO getMytolo() {
@@ -92,9 +95,9 @@ public class MythreadToLo extends RootThread{
     public void setMytolo(TOPOLO mytolo) {
         this.mytolo = mytolo;
     }
+
     public void setG(GGraph g) {
         this.g = g;
     }
 
-    
 }

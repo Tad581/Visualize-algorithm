@@ -1,59 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="Draw Graph" />
-          <Menu mnemonicParsing="false" text="Example Graph">
-            <items>
-              <MenuItem mnemonicParsing="false" text="CP 4.1" />
-                  <MenuItem mnemonicParsing="false" text="CP 5.6" />
-                  <MenuItem mnemonicParsing="false" text="CP 5.2" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Algorithm">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#DFS" text="DFS" />
-                  <MenuItem mnemonicParsing="false" onAction="#ToLo" text="ToLo" />
-                  <MenuItem mnemonicParsing="false" onAction="#CutVer" text="CutVer" />
-               </items></Menu>
-        </menus>
-      </MenuBar>
-      <Pane fx:id="mainPane" prefHeight="389.0" prefWidth="600.0" />
-      <HBox prefHeight="100.0" prefWidth="200.0" />
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="284.0" prefWidth="600.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="417.0">
+      <Pane fx:id="mainPane" prefHeight="389.0" prefWidth="643.0">
+         <children>
+            <HBox layoutY="-1.0" prefHeight="27.0" prefWidth="600.0">
                <children>
-                  <SplitPane dividerPositions="0.3923076923076923" layoutX="-1.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="132.0" prefWidth="417.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="41.0" prefWidth="415.0">
-                           <children>
-                              <Label fx:id="ListDetail" layoutX="2.0" layoutY="3.0" prefHeight="42.0" prefWidth="410.0" />
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="92.0" prefWidth="415.0">
-                           <children>
-                              <ListView fx:id="listPseu" prefHeight="76.0" prefWidth="418.0" />
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Example Graph">
+                        <items>
+                          <MenuItem fx:id="exGraph1" mnemonicParsing="false" onAction="#handleExampleGraph" text="Example 1" />
+                              <MenuItem fx:id="exGraph2" mnemonicParsing="false" onAction="#handleExampleGraph" text="Example 2" />
+                              <MenuItem fx:id="exGraph3" mnemonicParsing="false" onAction="#handleExampleGraph" text="Example 3" />
+                              <MenuItem fx:id="exGraph4" mnemonicParsing="false" onAction="#handleExampleGraph" text="Example 4" />
+                              <MenuItem fx:id="exGraph5" mnemonicParsing="false" onAction="#handleExampleGraph" text="Example 5" />
+                              <MenuItem fx:id="exGraph6" mnemonicParsing="false" onAction="#handleExampleGraph" text="Example 6" />
+                              <MenuItem fx:id="exGraph7" mnemonicParsing="false" onAction="#handleExampleGraph" text="Example 7" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Algorithm">
+                           <items>
+                              <MenuItem fx:id="dfsAlgo" mnemonicParsing="false" onAction="#handleChooseAlgorithm" text="DFS" />
+                              <MenuItem fx:id="topoAlgo" mnemonicParsing="false" onAction="#handleChooseAlgorithm" text="Kahn's Algorithm" />
+                              <MenuItem fx:id="cutBridgeAlgo" mnemonicParsing="false" onAction="#handleChooseAlgorithm" text="Cut Bridge Algorithm" />
+                           </items>
+                        </Menu>
+                    </menus>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </MenuBar>
                </children>
-            </AnchorPane>
+            </HBox>
+         </children>
+      </Pane>
+      <HBox prefHeight="100.0" prefWidth="200.0" />
+      <SplitPane dividerPositions="0.3963210702341137" prefHeight="284.0" prefWidth="600.0">
+        <items>
+            <VBox prefHeight="63.0" prefWidth="234.0">
+               <children>
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                    <buttons>
+                        <Button fx:id="drawGraphButton" mnemonicParsing="false" onAction="#handleDrawGraph" prefHeight="27.0" prefWidth="116.0" text="Draw Graph" />
+                        <Button fx:id="goButton" mnemonicParsing="false" onAction="#handleAlgorithm" text="GO" />
+                    </buttons>
+                  </ButtonBar>
+                  <Pane prefHeight="29.0" prefWidth="234.0">
+                     <children>
+                        <TextField fx:id="startVertexInput" layoutX="51.0" layoutY="2.0" prefHeight="24.0" prefWidth="47.0" text="0" />
+                        <Label layoutX="27.0" layoutY="4.0" minWidth="47.0" prefHeight="16.0" text="S = " />
+                        <Label fx:id="inputErrorMessage" layoutX="111.0" layoutY="6.0" text="Input is not valid" />
+                     </children>
+                  </Pane>
+                  <Label fx:id="errorDrawingMessage" prefHeight="16.0" prefWidth="404.0" text="You are drawing !!!" />
+                  <Label fx:id="errorTranversingMessage" layoutX="10.0" layoutY="79.0" prefHeight="16.0" prefWidth="404.0" text="Graph is traversing!!!" />
+               </children>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </VBox>
+            <SplitPane dividerPositions="0.3356164383561644" orientation="VERTICAL" prefHeight="154.0" prefWidth="417.0">
+               <items>
+                  <Label fx:id="ListDetail" prefHeight="64.0" prefWidth="417.0" />
+                  <ListView fx:id="listPseu" prefHeight="87.0" prefWidth="417.0" />
+               </items>
+            </SplitPane>
         </items>
       </SplitPane>
    </children>

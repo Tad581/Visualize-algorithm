@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import application.Graph.Graph;
 import application.Graph.Vertex.*;
-import application.ui.math.Vector2;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 
 // Sẽ kế thừa lại cái graph không UI 
 public class GGraph extends Graph {
@@ -18,6 +21,9 @@ public class GGraph extends Graph {
 	Pane drawPane;
 	private GNode selectedNode;
 	private GEdge selectedEdge;
+	public ArrayList<Arrow> lines = new ArrayList<Arrow>();
+	public ArrayList<Circle> vertexCirles = new ArrayList<Circle>();
+	public ArrayList<Text> vertexLabel = new ArrayList<Text>();
 
 	public GGraph(Pane drawPane) {
 		super();
@@ -28,7 +34,7 @@ public class GGraph extends Graph {
 
 	private GNode getNodeAt(int x, int y) {
 		GNode n = null;
-		Vector2 dis = Vector2.Zero();
+		CusVector dis = CusVector.Zero();
 		for (Vertex vertex : vertices) {
 			dis.x = ((GNode) vertex).x - x;
 			dis.y = ((GNode) vertex).y - y;
@@ -43,7 +49,7 @@ public class GGraph extends Graph {
 	public void addNode(int x, int y) {
 		// check intersection with other nodes
 		boolean intersect = false;
-		Vector2 dis = Vector2.Zero();
+		CusVector dis = CusVector.Zero();
 		for (Vertex vertex : vertices) {
 			dis.x = ((GNode) vertex).x - x;
 			dis.y = ((GNode) vertex).y - y;
@@ -55,32 +61,18 @@ public class GGraph extends Graph {
 		if (intersect)
 			return;
 
-		// check whether 3 point on the same line
 		vertices.add(new GNode(this, numberOfVertices++, x, y));
-		// adjList.add(new ArrayList<Integer>());
 	}
 
-	// public void deleteNode() throws Exception {
-	// super.deleteNode(selectedNode.getId());
-	// selectedNode.remove();
-	// selectedNode = null;
-	// }
 
 	private void addEdge(GNode n1, GNode n2) {
 		GEdge edge = new GEdge(this, n1, n2);
-		if (this.getEdges().contains(edge)) {
+		if (edges.contains(edge)) {
 			return;
 		}
-		this.getEdges().add(edge);
-		// adjList.get(n1.getId()).add(n2.getId());
+		edges.add(edge);
 	}
-
-	public void deleteEdge() throws Exception {
-		// super.deleteEdge(selectedEdge.getStart(), selectedEdge.getEnd());
-		selectedEdge.remove();
-		selectedEdge = null;
-	}
-
+	
 	void setSelectedEdge(GEdge e) {
 		selectedEdge = e;
 	}

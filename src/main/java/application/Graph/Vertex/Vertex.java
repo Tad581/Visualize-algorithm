@@ -7,8 +7,6 @@ public class Vertex {
     private int num;
     private int low;
 
-    
-
     public int getNum() {
         return num;
     }
@@ -52,7 +50,7 @@ public class Vertex {
     public void setTraveled(boolean isTraveled) {
         this.isTraveled = isTraveled;
     }
-    
+
     public String toString() {
         String str = String.valueOf(id);
         return str;

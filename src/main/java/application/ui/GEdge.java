@@ -1,7 +1,6 @@
 package application.ui;
 
 import application.Graph.Edge.*;
-import application.ui.math.Vector2;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 
@@ -15,7 +14,6 @@ public class GEdge extends Edge {
 	GGraph g;
 	GNode nFrom, nTo;
 	Arrow line;
-	Text label;
 
 	public GEdge(GGraph g, GNode n1, GNode n2) {
 		super(n1, n2);
@@ -29,10 +27,8 @@ public class GEdge extends Edge {
 
 		if (line != null)
 			g.drawPane.getChildren().remove(line);
-		if (label != null)
-			g.drawPane.getChildren().remove(label);
 
-		Vector2 dis = new Vector2(nTo.x - nFrom.x, nTo.y - nFrom.y);
+		CusVector dis = new CusVector(nTo.x - nFrom.x, nTo.y - nFrom.y);
 		double rat = (GNode.R + 2) / dis.length();
 		int disX = (int) (rat * (nTo.x - nFrom.x));
 		int disY = (int) (rat * (nTo.y - nFrom.y));
@@ -41,24 +37,16 @@ public class GEdge extends Edge {
 				nFrom.x + disX, nFrom.y + disY,
 				nTo.x - disX, nTo.y - disY);
 
-		label = new Text(
-				(nFrom.x + nTo.x) >> 1,
-				(nFrom.y + nTo.y) >> 1,
-				Long.valueOf(1).toString());
-
-		label.getTransforms().add(new Rotate(dis.getAlpha(), (nFrom.x + nTo.x) >> 1, (nFrom.y + nTo.y) >> 1));
-
-		g.drawPane.getChildren().addAll(line, label);
-
+		g.drawPane.getChildren().addAll(line);
+		g.lines.add(line);
 	}
 
 	public void remove() {
-		g.drawPane.getChildren().removeAll(line, label);
+		g.drawPane.getChildren().removeAll(line);
 	}
 
 	public Arrow getLine() {
 		return line;
 	}
 
-	
 }

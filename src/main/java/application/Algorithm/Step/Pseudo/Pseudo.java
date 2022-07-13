@@ -2,13 +2,14 @@ package application.Algorithm.Step.Pseudo;
 
 import application.Algorithm.Step.Step;
 
-public class Pseudo extends Step{
+public class Pseudo extends Step {
     private int StepID;
-    public Pseudo (){
-    
+
+    public Pseudo() {
+
     }
 
-    public Pseudo(int StepID){
+    public Pseudo(int StepID) {
         this.StepID = StepID;
     }
 
@@ -20,5 +21,4 @@ public class Pseudo extends Step{
         StepID = stepID;
     }
 
-    
 }
