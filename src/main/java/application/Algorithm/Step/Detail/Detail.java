@@ -6,6 +6,15 @@ public class Detail extends Step{
     private int FromVerID;
     private int ToVerID;
     private boolean isCutVer = false;
+    private boolean isCutedge = false;
+
+    public boolean isCutedge() {
+        return isCutedge;
+    }
+
+    public void setCutedge(boolean isCutedge) {
+        this.isCutedge = isCutedge;
+    }
 
     public Detail(){
         

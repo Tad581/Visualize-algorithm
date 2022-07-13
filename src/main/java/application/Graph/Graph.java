@@ -33,16 +33,37 @@ public class Graph {
     public static Graph autoGenerateGraph () {
         Graph graph = new Graph();
         
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 8; i++) {
             Vertex tempVertex = new Vertex(i);
             graph.getVertices().add(tempVertex);
         }
 
         graph.edges.add(new Edge(graph.getVertices().get(0), graph.getVertices().get(1)));
-        graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(2)));
         graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(0)));
+
+        graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(2)));
         graph.edges.add(new Edge(graph.getVertices().get(2), graph.getVertices().get(1)));
         
+        graph.edges.add(new Edge(graph.getVertices().get(1), graph.getVertices().get(3)));
+        graph.edges.add(new Edge(graph.getVertices().get(3), graph.getVertices().get(1)));
+
+        graph.edges.add(new Edge(graph.getVertices().get(2), graph.getVertices().get(3)));
+        graph.edges.add(new Edge(graph.getVertices().get(3), graph.getVertices().get(2)));
+
+        graph.edges.add(new Edge(graph.getVertices().get(3), graph.getVertices().get(4)));
+        graph.edges.add(new Edge(graph.getVertices().get(4), graph.getVertices().get(3)));
+
+        graph.edges.add(new Edge(graph.getVertices().get(4), graph.getVertices().get(5)));
+        graph.edges.add(new Edge(graph.getVertices().get(5), graph.getVertices().get(4)));
+
+        graph.edges.add(new Edge(graph.getVertices().get(4), graph.getVertices().get(6)));
+        graph.edges.add(new Edge(graph.getVertices().get(6), graph.getVertices().get(4)));
+
+        graph.edges.add(new Edge(graph.getVertices().get(5), graph.getVertices().get(7)));
+        graph.edges.add(new Edge(graph.getVertices().get(7), graph.getVertices().get(5)));
+
+        graph.edges.add(new Edge(graph.getVertices().get(6), graph.getVertices().get(6)));
+        graph.edges.add(new Edge(graph.getVertices().get(7), graph.getVertices().get(6)));
         return graph;
     }
 

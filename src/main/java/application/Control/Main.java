@@ -12,10 +12,12 @@ public class Main {
         Graph graph = Graph.autoGenerateGraph();
         graph.displayGraph(graph);
         CutVertex cut = new CutVertex(graph);
-        cut.traversal(0,0);
-        for(int i = 0;i<cut.getListofStep().size();i++){
-            System.out.println(cut.getListofStep().get(i));
-            System.out.println(cut.getListofDetail().get(i));
+        cut.CutverTraversal(0,0);
+        for(int i =0; i< graph.getVertices().size();i++){
+            System.out.println(graph.getVertices().get(i).getNum()+ " "+ graph.getVertices().get(i).getLow());
+        }
+        for(int  i =0; i<cut.getListofStep().size();i++){
+            System.out.println(cut.getListofDetail().get(i).toString());
         }
     }
 }

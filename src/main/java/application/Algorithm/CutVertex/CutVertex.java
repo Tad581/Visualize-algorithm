@@ -149,27 +149,35 @@ public class CutVertex extends Algorithm{
                 String condition = "";
                 if(neighbor.get(i).getLow() < curVertex.getNum()){
                     condition = condition + "low["+neighbor.get(i).toString()+"] < num["+curVertex.toString() +"], so " + curVertex.toString()+" is not a cut vertex.\n";
+                    ((Detail) this.getListofDetail().get(Detailcount)).setFromVerID(curVertex.getId());
+                    ((Detail) this.getListofDetail().get(Detailcount)).setToVerID(neighbor.get(i).getId());
                 }
 
                 if(neighbor.get(i).getLow() >= curVertex.getNum()){
                     if(curVertex.getId() == 0){
                         condition = condition + "low["+neighbor.get(i).toString()+"] < num["+curVertex.toString() +"], but " + curVertex.toString()+" is root so not a cut vertex.\n";
+                        ((Detail) this.getListofDetail().get(Detailcount)).setFromVerID(curVertex.getId());
+                        ((Detail) this.getListofDetail().get(Detailcount)).setToVerID(neighbor.get(i).getId());
                     }
                     else{
                         condition = condition + "low["+neighbor.get(i).toString()+"] >= num["+curVertex.toString() +"], so " + curVertex.toString()+" is a cut vertex.\n";
                         ((Detail) this.getListofDetail().get(Detailcount)).setFromVerID(curVertex.getId());
+                        ((Detail) this.getListofDetail().get(Detailcount)).setToVerID(neighbor.get(i).getId());
                         ((Detail) this.getListofDetail().get(Detailcount)).setCutVer(true);
                     }
                 }
 
                 if(neighbor.get(i).getLow() <= curVertex.getNum()){
                     condition = condition + "low["+neighbor.get(i).toString()+"] <= num["+curVertex.toString() +"], so edge" + curVertex.toString()+" -> "+ neighbor.get(i).toString()+" is not a bridge.";
+                    ((Detail) this.getListofDetail().get(Detailcount)).setFromVerID(curVertex.getId());
+                    ((Detail) this.getListofDetail().get(Detailcount)).setToVerID(neighbor.get(i).getId());
                 }
 
                 if(neighbor.get(i).getLow() > curVertex.getNum()){
                     condition = condition + "low["+neighbor.get(i).toString()+"] > num["+curVertex.toString() +"], so edge" + curVertex.toString()+" -> "+ neighbor.get(i).toString()+" is a bridge.";
                     ((Detail) this.getListofDetail().get(Detailcount)).setFromVerID(curVertex.getId());
                     ((Detail) this.getListofDetail().get(Detailcount)).setToVerID(neighbor.get(i).getId());
+                    ((Detail) this.getListofDetail().get(Detailcount)).setCutedge(true);
                 }
 
                 this.getListofDetail().get(Detailcount).setStepContent(condition);

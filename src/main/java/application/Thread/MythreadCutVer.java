@@ -33,7 +33,7 @@ public class MythreadCutVer extends RootThread{
             
             try{
                 Thread.currentThread();
-                Thread.sleep(1000);
+                Thread.sleep(200);
             } catch(InterruptedException e){
                 e.printStackTrace();
             }
@@ -64,7 +64,9 @@ public class MythreadCutVer extends RootThread{
                     e1.getLine().setFill(Color.ORANGE);
                     GNode vfrom = (GNode) g.getVertices().get(((Detail) detail).getFromVerID());
                     vfrom.getC().setFill(Color.WHITE);
-                    vfrom.getC().setStroke(Color.SKYBLUE);
+                    if(vfrom.getC().getStroke() != Color.GREEN){
+                        vfrom.getC().setStroke(Color.ORANGE);
+                    }
                     break;
                 case 3:
                     GNode vnot = (GNode) g.getVertices().get(((Detail) detail).getToVerID());
@@ -81,15 +83,14 @@ public class MythreadCutVer extends RootThread{
                     }
                     break;
                 case 6:
-                    int checkfrom = ((Detail) detail).getFromVerID();
-                    int checkto = ((Detail) detail).getToVerID();
-                    boolean check = ((Detail) detail).isCutVer();
-                    if(check == true){
+                    boolean checkver = ((Detail) detail).isCutVer();
+                    boolean checkedge = ((Detail) detail).isCutedge();
+                    if(checkver == true){
                         GNode vcut = (GNode) g.getVertices().get(((Detail) detail).getFromVerID());
                         vcut.getC().setFill(Color.WHITE);
                         vcut.getC().setStroke(Color.GREEN);
                     }
-                    if(checkfrom >= 0 && checkto >=0){
+                    if(checkedge == true){
                         GEdge ecut = (GEdge) g.GetedgewithFromTo(((Detail) detail).getFromVerID(), ((Detail) detail).getToVerID());
                         ecut.getLine().setFill(Color.GREEN);
                         GEdge ecut1 = (GEdge) g.GetedgewithFromTo(((Detail) detail).getToVerID(), ((Detail) detail).getFromVerID());
