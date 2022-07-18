@@ -1,0 +1,11 @@
+#inputErrorMessage {
+    -fx-text-fill: transparent;
+}
+
+#errorDrawingMessage { 
+    -fx-text-fill: transparent;
+}
+
+#errorTranversingMessage {
+    -fx-text-fill: transparent
+}
